@@ -1,5 +1,4 @@
 use anyhow::Result;
-use macros::my_vec;
 
 fn main() -> Result<()> {
     let v = my_vec![1, 2, 3];
@@ -9,4 +8,18 @@ fn main() -> Result<()> {
     println!("{:?}", v1);
 
     Ok(())
+}
+
+#[macro_export]
+macro_rules! my_vec  {
+    ($($x:expr),*) => {{
+        let v = vec![$($x),*];
+
+        /* let mut v = Vec::new();
+        $(
+            v.push($x);
+        )* */
+
+        v
+    }};
 }
